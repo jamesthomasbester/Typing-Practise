@@ -1,10 +1,10 @@
 const mongoose  = require("mongoose")
-const User = require('../module/user');
+const Profile = require('./profile');
 
 const DataSchema = new mongoose.Schema({
-    user: {
+    profile: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Profile'
     },
     data: {
         q: {

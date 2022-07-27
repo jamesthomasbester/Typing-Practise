@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('../module/user');
-const Data = require('../module/PlayerData');
 mongoose.connect("mongodb+srv://jamesbester:typo123@cluster0.jpy13lp.mongodb.net/?retryWrites=true&w=majority/typo", 
 () => console.log("connected to db"),
 e => console.error(e)
