@@ -1,0 +1,139 @@
+/* Global */
+*{
+    color: #22282F;
+}
+
+body{
+    background: #EEEEEE;
+}
+
+/* Nav */
+
+nav{
+    background: #EEEEEE;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.inner-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 23px;
+    
+    position: relative;
+    width: 375px;
+    height: 90px;
+    
+    background: #EEEEEE;
+    border: 1px solid #D0D5DD;
+    border-radius: 0px 0px 16px 16px;
+}
+
+.nav-icon{
+    font-size: 2rem;
+    color: #22282F;
+    padding: 15px 15px;
+}
+
+.is-active{
+    border-top: 5px solid #6979F8;
+}
+
+.nav-icon :hover{
+    color: #6979F8;
+}
+
+ul{
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+li{
+    padding: 5px 20px;
+    list-style: none;
+}
+
+a{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+a:hover{
+    color:#6979F8;
+}
+
+.focused{
+    font-size: 1.8rem;
+}
+
+.key-container{
+    
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 10px
+}
+
+
+.key{
+    color: #22282F;
+    font-size: 2rem;
+}
+
+.body-container {
+    display: flex;
+    flex-direction:row;
+    margin: 50px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.top-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.active{
+    color: greenyellow;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+@keyframes wrong{
+    0% {font-size:1.9rem; transform: rotate(20deg);}   
+    25% {font-size:1.8rem; transform: rotate(40deg);}
+    50% {font-size:1.7rem; transform: rotate(20deg);}
+    75% {font-size:1.8rem; transform: rotate(0deg);}
+    100% {font-size: 1.9rem; transform: rotate(-20deg)}
+}
+
+.wrong{
+    color: tomato;
+    font-size: 2rem;
+    font-weight: 700;
+    animation-name: wrong;
+    animation-duration: 1s;
+}
+
+.space-xl{
+    margin: 20px 10px;
+}
+
+#test{
+    display: flex;
+    flex-direction: row;
+}
