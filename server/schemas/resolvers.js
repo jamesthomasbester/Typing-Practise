@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Data } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -50,6 +50,12 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    addCharactData: async (parent, {profile, character, latency, correct, incorrect}) => {
+      const data = await Data.create({profile, character, latency, correct})
+      
+      
+    }
 
   },
 };

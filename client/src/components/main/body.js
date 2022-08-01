@@ -1,143 +1,108 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import Key from "../../builders/key";
 import keyIndex from "../../util/KeyIndex";
-import { useQuery } from "@apollo/client";
-import { QUERY_PROFILES } from "../../util/queries";
+import Scoreboard from "../builders/scoreboard";
+import useTimer from "../../util/useTimer";
+import useWords from "../../util/useWords";
+import userManagement from "../../util/userManagement";
 
 const Body = () => {
-    var timer = 0;
-    var i = 1;
+    const {timer, isActive, startTimer, resetTimer, pauseTimer} = useTimer(0);
+    const [wpm, setWpm] = useState(0);
+    const [wordCounts, setWordCounts] = useState(0);
+    const [currentPos, setCurrentPos] = useState(0);
+    const [score, setScore] = useState(0);
+    const [start, setStart] = useState(false);
+    const [key, setKey] = useState([])
+    var wordCount = 0
+    var letter = 0;
+    var index = 0;
     var n = 0;
-    var list;
-
-    const profiles = useQuery(QUERY_PROFILES)
-
-    setInterval(() =>{
-        timer++;
-    },1000)
+    var i = 1;
+    var correctCount = 0;
+    var correctWordCount = 0;
+    var list = useWords();
 
     const keyDown = (e) => {
-        if(e.key === document.getElementById(i).textContent){
+        console.log(index)
+        letter = list.map(item => item.split(""));
+        let letterLength = list.join('');
+        if(e.key === letter[wordCount][index]){
             document.getElementById(i).setAttribute("class", "active")
-            Object.entries(keyIndex).find(key => key[0] == e.key)[1].score += 10;
-            Object.entries(keyIndex).find(key => key[0] == e.key)[1].correct += 1;
-            i++
-        }else if(e.keyCode === 32){
-            return;
-        }else{
+            correctCount += 1;
+            i++;
+            setKey([...key, e.key])
+        }else if(e.key !== letter[wordCount][index]){
             document.getElementById(i).setAttribute("class", "wrong")
-            Object.entries(keyIndex).find(key => key[0] == e.key)[1].score -= 10;
-            Object.entries(keyIndex).find(key => key[0] == e.key)[1].incorrect -= 10;
-            i++
+            i++;
         }
-        console.log(Object.entries(keyIndex).find(key => key[0] == e.key)[1])
+        setCurrentPos((i / (letterLength.length + 1)) * 100)
+        index++;
+        if(index >= letter[wordCount].length){
+            wordCount++;
+            setWordCounts(wordCount);
+            index = 0
+        }
+        if(correctCount === letter[wordCount].length){
+            correctWordCount++;
+        }
+
+        if(wordCount >= (letter.length)-1){
+            pauseTimer()
+            userManagement({
+                correct: {
+                    a: {
+                        latency: 10,
+                        correct: 5,
+                        incorrect: 1
+                    }
+                }
+            })
+        }
+        
+
+    //    console.log(Object.entries(keyIndex).find(key => key[0] == e.key)[1])
     }
 
     useEffect(() => {
-        document.addEventListener("keydown", keyDown)
-    },[keyDown])
+        window.addEventListener("keydown", keyDown)
+    }, [])
 
-    const alpha = [
-        'bobby', 
-        'klun', 
-        'awarded', 
-        'jayme', 
-        'sixth', 
-        'place', 
-        'for', 
-        'her', 
-        'very', 
-        'high', 
-        'quiz',
-    ]
+    useEffect(() => {
+        setWpm(wordCounts * 60 / timer);
+        console.log(key)
+    },[timer])
+    
 
-    const beta = [
-        'The', 
-        'wizard', 
-        'quickly', 
-        'jinxed', 
-        'the', 
-        'gnomes', 
-        'before', 
-        'they', 
-        'vaporized',
-    ]
 
-    const gamma = [
-        'zelda',
-        'might', 
-        'fix', 
-        'the', 
-        'job', 
-        'growth',
-        'plans', 
-        'very', 
-        'quickly', 
-        'on', 
-        'monday'
-    ]
 
-    const delta = [
-        'zack',
-        'gappow', 
-        'saved',
-        'the', 
-        'job', 
-        'requirement', 
-        'list', 
-        'for', 
-        'the',  
-        'six', 
-        'boys',
-    ]
 
-    var rand = Math.floor(Math.random() * 4)
-
-    switch (rand){
-        case 1:
-            list = alpha;
-            break;
-        case 2:
-            list = beta;
-            break;
-        case 3:
-            list = gamma;
-            break;
-        case 4:
-            list = delta;
-            break;
-        default:
-            list = delta;
-            break;
-    }
-
-    const handleClick = async(e) =>{
-        e.preventDefault();
-        console.log(profiles.data.profiles);
-    }
 
     return (
         <div className="body-container">
+            <Scoreboard time={timer} wpm={wpm} score={score} currentPos={currentPos}/>
             <div className="body-main-container">
                 <div className="top-container">
-                    {list.map((item, index) => {
-                       return( 
-                        <div id="test">
-                            {
-                                item.split('').map((x, y) => {
-                                    n ++;
-                                    return(
-                                        <Key character={x} index={n}></Key>
-                                    )
-                                })
-                            }
-                            <Key index={n} character={'_'}></Key>
-                        </div>
-                       )
-                    })}
-                </div>
-                <div className="bottom-container">
-                    <button onClick={handleClick}>test</button>
+                    { start ? (list.map((item, index) => {
+                     return( 
+                      <div id="test">
+                          {
+                              item.split('').map((x, y) => {
+                                  n ++;
+                                  return(
+                                      <Key character={x} index={n}></Key>
+                                  )
+                              })
+                          }
+                          <Key index={n} character={'_'}></Key>
+                      </div>
+                     )
+                  })) : (
+                    <button onClick={() => {
+                        setStart(true); 
+                        startTimer()
+                    }}>Start</button>
+                  )}
                 </div>
             </div>
         </div>

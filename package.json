@@ -1,0 +1,34 @@
+{
+  "name": "typing-practise",
+  "version": "1.0.0",
+  "description": "A web application to practise your typing and compare to others",
+  "main": "index.js",
+  "scripts": {
+    "server": "node server/server.js",
+    "client": "cd ../client && npm start",
+    "start": "concurrently \"npm run server/server.js\" \"cd client && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesthomasbester/Typing-Practise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesthomasbester/Typing-Practise/issues"
+  },
+  "homepage": "https://github.com/jamesthomasbester/Typing-Practise#readme",
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  },
+  "dependencies": {
+    "chart.js": "^3.8.2",
+    "chartjs": "^0.3.24",
+    "faker": "^6.6.6",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
+  }
+}

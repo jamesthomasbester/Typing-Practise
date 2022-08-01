@@ -1,3 +1,4 @@
 const Profile = require('./profile');
+const Data = require('./Data');
 
-module.exports = {Profile}
+module.exports = {Profile, Data}

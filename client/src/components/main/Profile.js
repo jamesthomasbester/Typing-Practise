@@ -11,9 +11,9 @@ const Profile = () => {
 
     const profile = data?.me || data?.profile || {}
 
-    console.log(profile)
-    console.log(Auth.loggedIn());
-    console.log(Auth.getProfile().data._id);
+    // console.log(profile)
+    // console.log(Auth.loggedIn());
+    // console.log(Auth.getProfile().data._id);
 
     if(Auth.loggedIn() && Auth.getProfile().data._id) { return <div>{profile.name}</div> }
     else{
