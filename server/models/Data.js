@@ -1,3 +1,5 @@
+const { Schema, model } = require('mongoose');
+const mongoose  = require("mongoose")
 
 const DataSchema = new mongoose.Schema({
     profile: {
@@ -9,13 +11,13 @@ const DataSchema = new mongoose.Schema({
             type: String,
         },
         latency: {
-            type: Decimal,
+            type: Number,
         },
         correct: {
-            type: Integer,
+            type: Number,
         },
         incorrect: {
-            type: Integer
+            type: Number
         }
     }
 })

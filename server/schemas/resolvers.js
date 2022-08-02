@@ -51,12 +51,20 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    addCharactData: async (parent, {profile, character, latency, correct, incorrect}) => {
-      const data = await Data.create({profile, character, latency, correct})
-      
-      
-    }
-
+    addCharacterData: async (parent, {profileId, character, latency, correct, count}) => {
+         return Profile.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet : { data: [ { character: character, latency: latency, correct: correct, count: count } ] }
+        },
+        {
+          new: true,
+          runValidators: true,
+          unique: true
+        }
+        )
+    },
+    
   },
 };
 

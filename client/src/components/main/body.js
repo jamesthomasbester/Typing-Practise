@@ -5,6 +5,9 @@ import Scoreboard from "../builders/scoreboard";
 import useTimer from "../../util/useTimer";
 import useWords from "../../util/useWords";
 import userManagement from "../../util/userManagement";
+import { useMutation } from "@apollo/client";
+import { ADD_CHAR } from "../../util/mutation";
+import Auth from "../../util/auth";
 
 const Body = () => {
     const {timer, isActive, startTimer, resetTimer, pauseTimer} = useTimer(0);
@@ -14,6 +17,8 @@ const Body = () => {
     const [score, setScore] = useState(0);
     const [start, setStart] = useState(false);
     const [key, setKey] = useState([])
+    const [char, setChar] = useState({profile: 'james', character: '', latency: 0, correct: 0, incorrect: 0})
+    const [ addCharacterData ] = useMutation(ADD_CHAR)
     var wordCount = 0
     var letter = 0;
     var index = 0;
@@ -23,7 +28,12 @@ const Body = () => {
     var correctWordCount = 0;
     var list = useWords();
 
+    
     const keyDown = (e) => {
+        addCharacterData({
+            variables: {character: 'a', latency: 10, correct: 2, incorrect: 1}
+        })
+        
         console.log(index)
         letter = list.map(item => item.split(""));
         let letterLength = list.join('');
@@ -66,6 +76,8 @@ const Body = () => {
 
     useEffect(() => {
         window.addEventListener("keydown", keyDown)
+
+        
     }, [])
 
     useEffect(() => {

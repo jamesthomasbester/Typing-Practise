@@ -32,4 +32,10 @@ export const GET_PROFILE = gql`
   }
   `
 
+export const ADD_CHAR = gql`
+  mutation addCharacterData($profileId: ID!, $character: String!, $latency: String!, $correct: String!, $count: String!) {
+    addCharacterData( profileId: $profileId, character: $character, latency: $latency, correct: $correct, count: $count)
+  }
+  `
+
 

@@ -207,3 +207,24 @@ a:hover{
     font-weight: 700;
     text-align: end;
 }
+
+/* profile */
+
+.profile-outer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-dashboard-container {
+    display: flex;
+    flex-direction:column;
+    width: 230px;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.profile-dashboard-container ul {
+    display: flex;
+    flex-direction: column;
+}

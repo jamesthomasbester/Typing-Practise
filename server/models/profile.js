@@ -21,8 +21,18 @@ const profileSchema = new Schema({
   },
   data: [
     {
-      type: String,
-      trim: true,
+      character: {
+          type: String,
+      },
+      latency: {
+          type: Number,
+      },
+      correct: {
+          type: Number,
+      },
+      count: {
+          type: Number
+      }
     },
   ],
 });

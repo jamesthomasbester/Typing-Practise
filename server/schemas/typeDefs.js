@@ -1,11 +1,20 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+
+  type Data {
+    character: String!,
+    latency: String!,
+    correct: String!,
+    count: String!
+  }
+
   type Profile {
     _id: ID
     name: String
     email: String
     password: String
+    data: [Data]!
   }
 
   type Auth {
@@ -24,6 +33,7 @@ const typeDefs = gql`
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeProfile: Profile
+    addCharacterData(profileId: ID!, character: String!, latency: String!, correct: String!, count: String! ): Profile
   }
 `;
 
