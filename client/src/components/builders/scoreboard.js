@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 
-const Scoreboard = ({time, wpm, score, currentPos}) => {
+const Scoreboard = ({focus, wpm, accuracy, currentPos}) => {
     const [test, setTest] = useState(currentPos + "%")
     ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -34,14 +34,14 @@ const Scoreboard = ({time, wpm, score, currentPos}) => {
         <div className="scoreboard-container">
             <div className="top-score-container">
                 <div className="time-container">
-                    <p>{time}s</p> 
+                    <h2>Current focus: {focus}</h2> 
                 </div>
                 <div className="wpm-container">
                     <Doughnut className="test" data={data} />
                     <p>{wpm}</p>
                 </div>
                 <div className="score-container">
-                    <p>{score}</p> 
+                    <h2 class="accuracy">Accuracy: {accuracy}%</h2>
                 </div>
             </div>
             <div className="progress-container">

@@ -9,14 +9,14 @@ const Navbar = () => {
             <div className="inner-nav">
                 <ul>
                     <li>
-                        <NavLink activeClass="is-active" to="/query">
+                        <NavLink to="/search">
                         {({isActive}) => isActive ? 
                             <span className="material-symbols-rounded nav-icon is-active">search</span> : 
                             <span className="material-symbols-rounded nav-icon">search</span>}
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClass="is-active" to="/home">
+                        <NavLink to="/home">
                         {({isActive}) => isActive ? 
                             <span className="material-symbols-rounded nav-icon is-active">keyboard</span> : 
                             <span className="material-symbols-rounded nav-icon">keyboard</span>}

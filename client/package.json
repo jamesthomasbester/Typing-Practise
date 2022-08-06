@@ -30,6 +30,9 @@
       "react-app/jest"
     ]
   },
+  "react-dotenv": {
+    "whitelist": ["API_URL"]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

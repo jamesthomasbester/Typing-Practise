@@ -53,10 +53,11 @@ const resolvers = {
     },
 
     addCharacterData: async (parent, {profileId, data, }, context) => {
-         return Profile.findOneAndUpdate(
+        console.log(data)
+         return await Profile.findOneAndUpdate(
         { _id: ObjectId(profileId) },
         {
-          $push: { data }  
+          $addToSet: { data: data }  
         },
         {
           new: true,
@@ -66,12 +67,9 @@ const resolvers = {
         )
     },
     updateCharacterData: async (parent, {profileId, data, }, context) => {
-      const user = await Profile.findOne({ _id: profileId , })
-      console.log(user.data)
-      return user.data;
-      if(!usersData){
-        throw new AuthenticationError('No profile with this email found!');
-      }
+      const user = await Profile.findOne({ _id: profileId })
+      console.log(user)
+      return user;
 
     //   return Profile.findOneAndUpdate(
     //  { _id: ObjectId(profileId) },

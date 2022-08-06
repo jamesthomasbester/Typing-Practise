@@ -9,6 +9,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import  Profile  from './components/main/Profile';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
+import Search from './components/main/search';
 
 function App() {
 
@@ -53,6 +54,7 @@ const link = ApolloLink.from([errorLink, httpLink]);
         <Navbar>
           </Navbar>
             <Routes>
+              <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />

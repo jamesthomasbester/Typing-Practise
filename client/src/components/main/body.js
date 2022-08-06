@@ -4,36 +4,36 @@ import axios from "axios";
 import keyIndex from "../../util/KeyIndex";
 import Scoreboard from "../builders/scoreboard";
 import useTimer from "../../util/useTimer";
+
 import Words from "../../util/useWords";
 import userManagement from "../../util/userManagement";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_CHAR } from "../../util/mutation";
+import { QUERY_ME, QUERY_SINGLE_PROFILE } from "../../util/queries";
 import Auth from "../../util/auth";
 
 const Body = () => {
     const {timer, isActive, startTimer, resetTimer, pauseTimer} = useTimer(0);
+    const [focus, setFocus] = useState('v') 
+    const [accuracy, setAccuracy] = useState(0) 
     const [words, setWords] = useState(['']);
     const [wpm, setWpm] = useState(0);
-    const [wordCounts, setWordCounts] = useState(0);
+    const [index, setIndex] = useState(0);
+    const [letterPos, setLetterPos] = useState(0)
+    const [wordCount, setWordCount] = useState(0);
     const [currentPos, setCurrentPos] = useState(0);
-    const [list, setList] = useState([]);
     const [score, setScore] = useState(0);
     const [start, setStart] = useState(false);
+    const [end, setend] = useState(false);
     const [key, setKey] = useState([])
-    var char = [{character: 'a', latency: 5, correct: 3, count: 5}, {character: 'a', latency: 15, correct: 4, count: 10}, {character: 'b', latency: 5, correct: 3, count: 5}]
-    var time = 0;
-    var wordCount = 0
-    var letter = 0;
-    var index = 0;
+    const [storage, setStorage ] = useState([]);
     var n = 0;
-    var i = 1;
-    var correctCount = 0;
-    var correctWordCount = 0;
-    var test;
+    const [createdata, {data, loading, error}] = useMutation(ADD_CHAR)
+    const {info} = useQuery(QUERY_SINGLE_PROFILE, { variables: { profileId: "62e255371dce35547678dd08"}});
+
 
 
     useEffect(() => {
-
         const fetchData = async  () => {
             const options = {
                 method: "GET",
@@ -49,17 +49,79 @@ const Body = () => {
         }
         fetchData()
         .catch(console.error)
-        console.log(words)
+        //console.log(words)
     }, [])
 
-    const startGame = () => {
-        setInterval(() => {
+    useEffect(() => {
+        setWpm(wordCount / (timer / 1000) ) 
+    })
 
-        }, 100)
+    
+    useEffect(() => {
+        // const syncData = async() => {
+        //     console.log('syncData')
+        //     for(const[keys, values] of Object.entries(keyIndex)){
+        //         await createdata({variables: {
+        //             profileId: "62e255371dce35547678dd08",
+        //             data: { 
+        //                 character: keys,
+        //                 fields:{
+        //                     correct: values.correct,
+        //                     incorrect: values.incorrect,
+        //                     count: values.count,
+        //                     latency: values.latency
+        //                 }
+        //             }
+        //         }})
+        //     }
+        // }
+        // syncData()
+    }, [end])
+
+    const evaluateKeys = (input) => {
+        console.log(info)
+        
+        let letters = words.map(word => word.split(""))
+        let temp = Object.entries(keyIndex).find(key => key[0] === input)
+        let correct;
+        
+        temp[1].count += 1;
+        temp[1].latency += timer;
+        if(input === letters[wordCount][letterPos]){
+            temp[1].correct += 1;
+            setIndex(index + 1)
+            setLetterPos(letterPos + 1)
+            correct = true
+        }else{
+            temp[1].incorrect += 1;
+            setIndex(index + 1)
+            setLetterPos(letterPos + 1)
+            correct = false
+        }
+        if(letterPos === letters[wordCount].length -1){
+            setWordCount(wordCount + 1)
+            setLetterPos(0)
+            if(wordCount + 1 >= words.length){
+                pauseTimer()
+            }
+        }
+        setStorage([...storage, temp])
+        return correct
     }
 
+
+
+
     const handleKeyDown = (e) => {
-        console.log(e.key)
+        setCurrentPos(((key.length + 1) / words.join("").length) * 100)
+        if(evaluateKeys(e.key)){
+            document.getElementById(index + 1).setAttribute("class", "active")
+        }else if(!evaluateKeys(e.key)){
+            document.getElementById(index + 1).setAttribute("class", "wrong")
+        }
+        console.log(words.length)
+        console.log(wordCount + 1)
+
     }
     
 
@@ -149,11 +211,10 @@ const Body = () => {
 
     return (
         <div className="body-container">
-            <Scoreboard time={timer} wpm={wpm} score={score} currentPos={currentPos}/>
+            <Scoreboard focus={focus} wpm={wpm} accuracy={accuracy} currentPos={currentPos}/>
             <div className="body-main-container">
                 
-                <div className="top-container" >
-                <input onKeyDown={handleKeyDown}/>
+                <div className="top-container" onClick={() => {document.getElementById("invisible-textbox").focus() }}>
                     { start ? (words.map((item, index) => {
                      return( 
                       <div id="test" >
@@ -174,9 +235,9 @@ const Body = () => {
                     <button className="start-button" onClick={() => {
                         setStart(true)
                         startTimer()
-                        
                     }}>Start</button>
                   )}
+                  <input id="invisible-textbox" className="invisible-textbox" value={key} autoFocus onChange={(e) => {setKey(e.target.value)}} onKeyDown={handleKeyDown}/>
                 </div>
             </div>
         </div>

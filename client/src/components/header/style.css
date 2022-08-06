@@ -7,6 +7,10 @@ body{
     background: #EEEEEE;
 }
 
+.fill{
+    height: 85vh;
+}
+
 /* Nav */
 
 nav{
@@ -78,6 +82,16 @@ a:hover{
 
 /* Body */ 
 
+.body-container {
+    height: 81vh;
+}
+
+.invisible-textbox {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
 .starter-button {
     margin: 20px;
     border: 2px solid #6979F8;
@@ -87,9 +101,9 @@ a:hover{
 
 .key-container{
     
-    margin: 10px;
-    width: 60px;
-    height: 60px;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
     justify-content: center;
     text-align: center;
     border: 1px solid #000;
@@ -99,7 +113,7 @@ a:hover{
 
 .key{
     color: #22282F;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .body-main-container {
@@ -118,9 +132,37 @@ a:hover{
     font-size: 2rem;
     border: none;
     padding: 100px;
+    animation: breathing 3s ease-in-out infinite alternate;
+    text-shadow: 5px #000;
+}
+
+
+@keyframes breathing {
+    0% {
+        text-shadow: 0px 0px 5px rgba(167, 109, 233, 0.2);
+        blur-radius: 5px;
+      }
+    
+      25% {
+        text-shadow: 0px 0px 5px rgba(167, 109, 233, 0.4);
+        blur-radius: 10px;
+      }
+    
+      60% {
+        text-shadow: 0px 0px 5px rgba(167, 109, 233, 0.7);
+        blur-radius: 15px;
+      }
+    
+      100% {
+        text-shadow: 0px 0px 5px rgba(167, 109, 233, 1);
+        blur-radius: 20px;
+      }
 }
 
 .top-container {
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     height: 600px;
@@ -128,7 +170,7 @@ a:hover{
 
 .active{
     color: greenyellow;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -142,7 +184,7 @@ a:hover{
 
 .wrong{
     color: tomato;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     animation-name: wrong;
     animation-duration: 1s;
@@ -206,6 +248,8 @@ a:hover{
 
 
 .bar {
+    display: flex;
+    overflow: hidden;
     background: #bbbbbb;
     border-radius: 50px;
 }
@@ -257,4 +301,53 @@ a:hover{
     background: url('../../assets/profileicon.jpg');
     background-size: cover;
     border-radius: 50%;
+}
+
+/* search */
+
+.search-container {
+    height: 85vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.inner-search-container {
+    height: 100%;
+    width: 60%;
+    order: 0;
+    justify-content: center;
+    align-self: stretch;
+    align-items: center;
+    flex-grow: 0;
+}
+
+.search{
+    margin-top: 40px;
+    background: rgba(250, 250, 250, 0.93);
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    flex-grow: 0;
+    gap: 10px;
+}
+
+/* login / signup */
+
+.form-info-container {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.form-info-container a {
+    font-size: 1rem;
 }

@@ -19,22 +19,20 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  wpm: {
+    type: Number
+  },
   data: [
     {
-      character: {
-          type: String,
-      },
-      latency: {
-          type: Number,
-      },
-      correct: {
-          type: Number,
-      },
-      count: {
-          type: Number
-      }
+        character: String,
+        fields: {
+            count: Number,
+            latency: Number,
+            incorrect: Number,
+            correct: Number,
+        }
     },
-  ],
+]
 });
 
 // set up pre-save middleware to create password

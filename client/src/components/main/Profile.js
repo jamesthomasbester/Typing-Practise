@@ -2,6 +2,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
 import { ADD_CHAR } from "../../util/mutation";
+import keyIndex from "../../util/KeyIndex";
 import { QUERY_ME, QUERY_SINGLE_PROFILE} from "../../util/queries";
 import Auth from "../../util/auth";
 
@@ -10,23 +11,19 @@ const Profile = () => {
     const [user, setUser] = useState()
     const [ addCharacterData ] = useMutation(ADD_CHAR)
 
-        const [createdata, {data, loading, error}] = useMutation(ADD_CHAR, {
-            variables: {
-                profileId: "62e255371dce35547678dd08",
-                data: 
-                {
-                    character: "b",
-                    latency: 10,
-                    correct: 200,
-                    count: 2000
-                }
-            }
-        })
+    //keyIndex.forEach((key) => console.log(key))
+    
+        // const [createdata, {data, loading, error}] = useMutation(ADD_CHAR, {
+        //     variables: {
+        //         profileId: "62e255371dce35547678dd08",
+        //         keyIndex
+        //     }
+        // })
     
 
     useEffect(() =>{
-        createdata()
-        console.log(data)
+        // createdata()
+        // console.log(data)
     }, [])
     
     try{

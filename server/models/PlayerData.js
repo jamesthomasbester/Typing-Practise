@@ -7,161 +7,239 @@ const DataSchema = new mongoose.Schema({
         ref: 'Profile'
     },
     data: {
-        q: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "q",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        w: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "w",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        e: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "e",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        r: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "r",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        t: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "t",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        y: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "y",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        u: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "u",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        i: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "i",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        o: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "o",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        p: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "p",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        a: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "a",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        s: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "s",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        d: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "d",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        f: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "f",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        g: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "g",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        h: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "h",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        j: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "j",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        k: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "k",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        l: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "l",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        z: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "z",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        x: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "x",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        c: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "c",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        v: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "v",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        b: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "b",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        n: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "n",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
-        m: {
-            score: Number,
-            latency: Number,
-            incorrect: Number,
-            correct: Number,
+        letter: {
+            character: "m",
+            field: {
+                count: Number,
+                latency: Number,
+                incorrect: Number,
+                correct: Number,
+            }
         },
     }
 })

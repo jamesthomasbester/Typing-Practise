@@ -27,9 +27,21 @@ export const LOGIN_USER = gql`
 export const ADD_CHAR = gql`
   mutation addCharacterData($profileId: ID!, $data: DataInput!) {
     addCharacterData(profileId: $profileId, data: $data){
-      correct
+      data {
+        character
+      }
     }
   }
   `
+
+export const GET_CHAR = gql`
+mutation addCharacterData($profileId: ID!, $data: DataInput!) {
+  updateCharacterData(profileId: $profileId, data: $data){
+    data {
+      character
+    }
+  }
+}
+`
 
 

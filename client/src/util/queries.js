@@ -30,10 +30,3 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const GET_PROFILE = gql`
-  query Query {
-    profiles {
-      email
-    }
-  }
-  `
