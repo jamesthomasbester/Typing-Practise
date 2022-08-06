@@ -24,12 +24,24 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const GET_PROFILE = gql`
-  query Query {
-    profiles {
-      email
+export const ADD_CHAR = gql`
+  mutation addCharacterData($profileId: ID!, $data: DataInput!) {
+    addCharacterData(profileId: $profileId, data: $data){
+      data {
+        character
+      }
     }
   }
   `
+
+export const GET_CHAR = gql`
+mutation addCharacterData($profileId: ID!, $data: DataInput!) {
+  updateCharacterData(profileId: $profileId, data: $data){
+    data {
+      character
+    }
+  }
+}
+`
 
 

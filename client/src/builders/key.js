@@ -12,7 +12,7 @@ const Key = (props) => {
     }else{
     return (
         <div className="key-container" >
-            <p className="key" id={props.index}  value={props.character} >
+            <p className="key" id={props.index} key={props.index}  value={props.character} >
             {props.character}
             </p>
         </div>

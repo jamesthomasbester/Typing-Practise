@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Data } = require('../models');
 const { signToken } = require('../utils/auth');
+const { ObjectId } = require('mongodb');
 
 const resolvers = {
   Query: {
@@ -51,6 +52,38 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
+    addCharacterData: async (parent, {profileId, data, }, context) => {
+        console.log(data)
+         return await Profile.findOneAndUpdate(
+        { _id: ObjectId(profileId) },
+        {
+          $addToSet: { data: data }  
+        },
+        {
+          new: true,
+          runValidators: true,
+          unique: true
+        }
+        )
+    },
+    updateCharacterData: async (parent, {profileId, data, }, context) => {
+      const user = await Profile.findOne({ _id: profileId })
+      console.log(user)
+      return user;
+
+    //   return Profile.findOneAndUpdate(
+    //  { _id: ObjectId(profileId) },
+    //  {
+    //    $push: { data }  
+    //  },
+    //  {
+    //    new: true,
+    //    runValidators: true,
+    //    unique: true
+    //  }
+    //  )
+ },
+    
   },
 };
 
