@@ -103,6 +103,7 @@ a:hover{
 }
 
 .body-main-container {
+    justify-content: center;
     display: flex;
     flex-direction:row;
     margin: 50px;
@@ -111,9 +112,18 @@ a:hover{
     overflow: hidden;
 }
 
+.start-button{
+    flex-grow: 1;
+    width: 100%;
+    font-size: 2rem;
+    border: none;
+    padding: 100px;
+}
+
 .top-container {
     display: flex;
     flex-wrap: wrap;
+    height: 600px;
 }
 
 .active{
@@ -150,7 +160,7 @@ a:hover{
 /* Scoreboard */
 
 .scoreboard-container {
-
+    
 }
 
 .top-score-container {
@@ -160,7 +170,8 @@ a:hover{
 }
 
 .time-container {
-
+    margin-top:12px;
+    font-size: 2rem;
 }
 
 .wpm-container {
@@ -185,7 +196,8 @@ a:hover{
 }
 
 .score-container {
-
+    margin-top: 12px;
+    font-size: 2rem;
 }
 
 .progress-container {
@@ -211,20 +223,38 @@ a:hover{
 /* profile */
 
 .profile-outer-container {
+    height: 85vh;
     display: flex;
     flex-direction: row;
 }
 
 .profile-dashboard-container {
+    margin: 10px;
+    padding: 15px;
     display: flex;
     flex-direction:column;
     width: 230px;
     height: 100%;
-    left: 0;
-    top: 0;
+    justify-content: space-evenly;
 }
 
 .profile-dashboard-container ul {
     display: flex;
     flex-direction: column;
+}
+
+.profile-dashboard-container li:hover {
+    border-bottom: 4px solid #6979F8;
+}
+.profile-dashboard-container a {
+    text-decoration: none;
+    color: #22282F;
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+    background: url('../../assets/profileicon.jpg');
+    background-size: cover;
+    border-radius: 50%;
 }

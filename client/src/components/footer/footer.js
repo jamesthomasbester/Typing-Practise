@@ -6,19 +6,19 @@ const Footer = () =>{
             <div className="footer-container">
                 <div className="footer-left">
                     <a>
-                        placeholder logo
+                        Typo
                     </a>
                 </div>
                 <div className="footer-right">
                     <ul>
                         <li>
-                            <a></a>
+                            <a>github</a>
                         </li>
                         <li>
-                            <a></a>
+                            <a>stackoverflow</a>
                         </li>
                         <li>
-                            <a></a>
+                            <a>twitter</a>
                         </li>
                     </ul>
                 </div>

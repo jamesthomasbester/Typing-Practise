@@ -4,9 +4,9 @@ const typeDefs = gql`
 
   type Data {
     character: String!,
-    latency: String!,
-    correct: String!,
-    count: String!
+    latency: Int!,
+    correct: Int!,
+    count: Int!
   }
 
   type Profile {
@@ -22,6 +22,13 @@ const typeDefs = gql`
     profile: Profile
   }
 
+  input DataInput {
+    character: String!,
+    latency: Int!,
+    correct: Int!,
+    count: Int!
+  }
+
   type Query {
     profiles: [Profile]!
     profile(profileId: ID!): Profile
@@ -33,7 +40,8 @@ const typeDefs = gql`
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeProfile: Profile
-    addCharacterData(profileId: ID!, character: String!, latency: String!, correct: String!, count: String! ): Profile
+    addCharacterData(profileId: ID!, data: DataInput!): Data
+    updateCharacterData(profileId:ID!, data: DataInput!): Data!
   }
 `;
 

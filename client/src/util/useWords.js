@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios"
 
-const useWords = (initialRound) => {
+const Words = (initialRound) => {
     const [words, setWords] = useState([]);
 
     const fetchWords = (letters) => {
@@ -101,4 +101,4 @@ const useWords = (initialRound) => {
     }
 }
 
-export default useWords;
+export default Words;

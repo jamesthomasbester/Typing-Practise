@@ -1,31 +1,58 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import React, { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { QUERY_ME, QUERY_SINGLE_PROFILE } from "../../util/queries";
+import { Navigate, useParams, Link } from "react-router-dom";
+import { ADD_CHAR } from "../../util/mutation";
+import { QUERY_ME, QUERY_SINGLE_PROFILE} from "../../util/queries";
 import Auth from "../../util/auth";
 
 const Profile = () => {
     const { profileId } = useParams()
     const [user, setUser] = useState()
+    const [ addCharacterData ] = useMutation(ADD_CHAR)
+
+        const [createdata, {data, loading, error}] = useMutation(ADD_CHAR, {
+            variables: {
+                profileId: "62e255371dce35547678dd08",
+                data: 
+                {
+                    character: "b",
+                    latency: 10,
+                    correct: 200,
+                    count: 2000
+                }
+            }
+        })
+    
+
+    useEffect(() =>{
+        createdata()
+        console.log(data)
+    }, [])
     
     try{
-       const data = useQuery(QUERY_SINGLE_PROFILE, { variables: { profileId: Auth.getProfile().data._id}})
-       console.log(data.data.profile.name)
+       //const data = useQuery(QUERY_SINGLE_PROFILE, { variables: { profileId: Auth.getProfile().data._id}})
         return (
             <div className="profile-outer-container">
                 <div className="profile-dashboard-container">
                     <div className="profile-card">
-                        <h2>{data.data.profile.name}</h2>
+                        <div className="profile-icon">
+
+                        </div>
+                        <h2>jamesbester</h2>
+                        <p>jamesthomasbester@gmail.com</p>
                     </div>
                     <ul>
                         <li>
-                            <a>Friends</a>
+                            <Link to="">Dashboard</Link>
                         </li>
                         <li>
-                            <a>Analytics</a>
+                            <Link to="">Friends</Link>
                         </li>
                         <li>
-                            <a>placeholder</a>
+                            <Link to="">Analytics</Link>
+                        </li>
+                        <li>
+                            <Link to="">placeholder</Link>
                         </li>
                     </ul>
                     <div className="profile-dashboard-end">

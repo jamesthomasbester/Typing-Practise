@@ -24,6 +24,8 @@
     "concurrently": "^7.3.0"
   },
   "dependencies": {
+    "apollo-link": "^1.2.14",
+    "apollo-link-error": "^1.1.13",
     "chart.js": "^3.8.2",
     "chartjs": "^0.3.24",
     "faker": "^6.6.6",

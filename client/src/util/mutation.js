@@ -24,17 +24,11 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const GET_PROFILE = gql`
-  query Query {
-    profiles {
-      email
-    }
-  }
-  `
-
 export const ADD_CHAR = gql`
-  mutation addCharacterData($profileId: ID!, $character: String!, $latency: String!, $correct: String!, $count: String!) {
-    addCharacterData( profileId: $profileId, character: $character, latency: $latency, correct: $correct, count: $count)
+  mutation addCharacterData($profileId: ID!, $data: DataInput!) {
+    addCharacterData(profileId: $profileId, data: $data){
+      correct
+    }
   }
   `
 
