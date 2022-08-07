@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/jamesthomasbester/Typing-Practise/issues"
   },
-  "homepage": "http://jambotics.com/",
+  "homepage": "https://heroku-typo-app.herokuapp.com/",
   "devDependencies": {
     "concurrently": "^7.3.0"
   },
