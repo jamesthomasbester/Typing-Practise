@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server/server.js",
     "client": "cd ../client && npm start",
-    "start": "concurrently \"npm run server/server.js\" \"cd client && npm start\"",
+    "start": "concurrently \"npm run server\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/jamesthomasbester/Typing-Practise/issues"
   },
-  "homepage": "https://github.com/jamesthomasbester/Typing-Practise#readme",
+  "homepage": "http://jambotics.com/",
   "devDependencies": {
     "concurrently": "^7.3.0"
   },
@@ -33,6 +33,7 @@
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-dotenv": "^0.1.3",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "concurrently": "^7.3.0"
   }
 }
