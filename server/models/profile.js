@@ -37,7 +37,6 @@ const profileSchema = new Schema({
     {
       name: String,
       email: String,
-
     }
   ],
   wpm: {

@@ -51,7 +51,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
+    addFriend: async (parent, {profileId, data}, context) => {
+      console.log(data);
+      return await Profile.findByIdAndUpdate(
+        { _id: ObjectId(profileId) },
+        { $addToSet: { friends: data}}
+        )
+    },
     addCharacterData: async (parent, {profileId, data, }, context) => {
         console.log(data)
          return await Profile.findOneAndUpdate(
@@ -81,8 +87,8 @@ const resolvers = {
         {_id: profileId},
         { $pull: { 'data': {} }}, {multi: true})
       return user;
-    }
-  },
+    },
+  }
 };
 
 module.exports = resolvers;
