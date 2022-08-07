@@ -34,6 +34,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
+
 export const ADD_CHAR = gql`
   mutation addCharacterData($profileId: ID!, $data: DataInput!) {
     addCharacterData(profileId: $profileId, data: $data){
@@ -43,6 +44,7 @@ export const ADD_CHAR = gql`
     }
   }
   `
+  ;
 
 export const GET_CHAR = gql`
 mutation getCharacterData($profileId: ID!) {
@@ -53,5 +55,13 @@ mutation getCharacterData($profileId: ID!) {
   }
 }
 `
+;
 
+export const REMOVE_DATA = gql`
+  mutation removeCharacterData($profileId: ID!) {
+    removeCharacterData(profileId: $profileId) {
+      name
+    }
+  }
+  `
 

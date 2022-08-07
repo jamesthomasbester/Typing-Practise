@@ -75,8 +75,13 @@ const resolvers = {
       const user = await Profile.findOne({ _id: profileId })
       console.log(user)
       return user;
- },
-    
+    },
+    removeCharacterData: async (parent, {profileId}) => {
+      const user = await Profile.update(
+        {_id: profileId},
+        { $pull: { 'data': {} }}, {multi: true})
+      return user;
+    }
   },
 };
 

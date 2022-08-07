@@ -24,8 +24,14 @@ const profileSchema = new Schema({
   },
   analytics: [
     {
-
-    }
+      character: String,
+      fields: {
+          count: Number,
+          latency: Number,
+          incorrect: Number,
+          correct: Number,
+      }
+  },
   ],
   friends: [
     {
