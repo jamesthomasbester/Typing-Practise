@@ -50,6 +50,7 @@ type Fields {
     login(email: String!, password: String!): Auth
     removeProfile: Profile
     addCharacterData(profileId: ID!, data: DataInput!): Profile
+    getCharacterData(profileId: ID!): Profile
     updateCharacterData(profileId:ID!, data: DataInput!): Profile
   }
 `;

@@ -9,50 +9,104 @@ import Words from "../../util/useWords";
 import userManagement from "../../util/userManagement";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_CHAR } from "../../util/mutation";
-import { QUERY_ME, QUERY_SINGLE_PROFILE } from "../../util/queries";
+import { QUERY_DATA } from "../../util/queries"
+import {QUERY_SINGLE_PROFILE } from "../../util/queries";
 import Auth from "../../util/auth";
 
 const Body = () => {
     const {timer, isActive, startTimer, resetTimer, pauseTimer} = useTimer(0);
-    const [focus, setFocus] = useState('v') 
-    const [accuracy, setAccuracy] = useState(0) 
+    const [focus, setFocus] = useState('v') ;
+    const [accuracy, setAccuracy] = useState(0) ;
     const [words, setWords] = useState(['']);
     const [wpm, setWpm] = useState(0);
     const [index, setIndex] = useState(0);
-    const [letterPos, setLetterPos] = useState(0)
+    const [incorrect, setIncorrect] = useState(0);
+    const [letterPos, setLetterPos] = useState(0);
     const [wordCount, setWordCount] = useState(0);
     const [currentPos, setCurrentPos] = useState(0);
-    const [score, setScore] = useState(0);
+    const [pastData, setPastData] = useState([])
     const [start, setStart] = useState(false);
     const [end, setend] = useState(false);
     const [key, setKey] = useState([])
     const [storage, setStorage ] = useState([]);
     var n = 0;
-    const [createdata, {data, loading, error}] = useMutation(ADD_CHAR)
-    const {info} = useQuery(QUERY_SINGLE_PROFILE, { variables: { profileId: "62e255371dce35547678dd08"}});
+    const [createdata] = useMutation(ADD_CHAR);
+    const {loading, error, data} = useQuery(QUERY_SINGLE_PROFILE, { variables: { profileId: Auth.getProfile().data._id}});
 
+    const onLaunch = async () => {
+        if(loading === false){
+            if(data.profile.data.length < 1){
+                setFocus("Initializing round")
+                setWords([
+                    'the', 
+                    'wizard', 
+                    'quickly', 
+                    'jinxed', 
+                    'the', 
+                    'gnomes', 
+                    'before', 
+                    'they', 
+                    'vaporized',
+                ])
+            }else{
+                const fetchData = async  () => {
+                    await data.profile.data.forEach(item => {
+                        let temp = Object.entries(keyIndex).find(key => key[0] === item.character)
+                        temp[1].count = item.fields.count;
+                        temp[1].latency = item.fields.latency;
+                        temp[1].correct = item.fields.correct;
+                        temp[1].incorrect = item.fields.incorrect;
+                    })
+                    console.log(keyIndex)
+                    const options = {
+                        method: "GET",
+                        url: 'https://wordsapiv1.p.rapidapi.com/getMultipleRandom',
+                        params: {count: '20', includes: 'a'},
+                        headers: {
+                            'X-RapidAPI-Key': '32b02794cbmsh72da06d86753b95p1dab23jsnd1ca9c7aceae',
+                            'X-RapidAPI-Host': 'random-words5.p.rapidapi.com'
+                        }
+                    };
+                    const json = await axios.request(options)
+                    setWords(json.data)
+                }
+                fetchData()
+                .catch(console.error)
+            }
+        }
+    }
 
+    
+
+    const onEnd = async () => {
+        console.log(keyIndex)
+        for(const[keys, values] of Object.entries(keyIndex)){
+                    await createdata({variables: {
+                        profileId: "62e255371dce35547678dd08",
+                        data: { 
+                            character: keys,
+                            fields:{
+                                correct: values.correct,
+                                incorrect: values.incorrect,
+                                count: values.count,
+                                latency: values.latency
+                            }
+                        }
+                    }})
+                }
+        }
+    
 
     useEffect(() => {
-        const fetchData = async  () => {
-            const options = {
-                method: "GET",
-                url: 'https://wordsapiv1.p.rapidapi.com/getMultipleRandom',
-                params: {count: '20', includes: 'a'},
-                headers: {
-                    'X-RapidAPI-Key': '32b02794cbmsh72da06d86753b95p1dab23jsnd1ca9c7aceae',
-                    'X-RapidAPI-Host': 'random-words5.p.rapidapi.com'
-                }
-            };
-            const json = await axios.request(options)
-            setWords(json.data)
-        }
-        fetchData()
-        .catch(console.error)
-        //console.log(words)
+        onLaunch();
+    }, [loading])
+
+    useEffect(() => {
+    
     }, [])
 
     useEffect(() => {
+        setAccuracy(100 - ((incorrect / index) * 100) )
         setWpm(wordCount / (timer / 1000) ) 
     })
 
@@ -79,7 +133,7 @@ const Body = () => {
     }, [end])
 
     const evaluateKeys = (input) => {
-        console.log(info)
+        // console.log(info)
         
         let letters = words.map(word => word.split(""))
         let temp = Object.entries(keyIndex).find(key => key[0] === input)
@@ -95,6 +149,7 @@ const Body = () => {
         }else{
             temp[1].incorrect += 1;
             setIndex(index + 1)
+            setIncorrect(incorrect + 1)
             setLetterPos(letterPos + 1)
             correct = false
         }
@@ -103,6 +158,7 @@ const Body = () => {
             setLetterPos(0)
             if(wordCount + 1 >= words.length){
                 pauseTimer()
+                onEnd()
             }
         }
         setStorage([...storage, temp])

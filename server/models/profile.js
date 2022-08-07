@@ -19,6 +19,21 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  avatar: {
+    path: String,
+  },
+  analytics: [
+    {
+
+    }
+  ],
+  friends: [
+    {
+      name: String,
+      email: String,
+
+    }
+  ],
   wpm: {
     type: Number
   },

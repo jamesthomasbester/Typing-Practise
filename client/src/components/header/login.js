@@ -19,7 +19,7 @@ const Login = () => {
         loginUser()
     },[loginData])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoginData({
             email: e.target[0].value,

@@ -1,5 +1,15 @@
 import { gql } from '@apollo/client';
 
+export const GET_PROFILE = gql`
+  mutation me($profileId: ID!) {
+     me {
+        _id
+        name
+        email
+     }
+   }
+  `
+
 export const ADD_PROFILE = gql`
   mutation addProfile($name: String!, $email: String!, $password: String!) {
     addProfile(name: $name, email: $email, password: $password) {
@@ -35,8 +45,8 @@ export const ADD_CHAR = gql`
   `
 
 export const GET_CHAR = gql`
-mutation addCharacterData($profileId: ID!, $data: DataInput!) {
-  updateCharacterData(profileId: $profileId, data: $data){
+mutation getCharacterData($profileId: ID!) {
+  getCharacterData(profileId: $profileId){
     data {
       character
     }

@@ -1,8 +1,9 @@
 
+
 const keyIndex = {
     
     q: {
-        count: 11,
+        count: 0,
         latency: 0,
         incorrect: 0,
         correct: 0
