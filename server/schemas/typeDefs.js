@@ -14,11 +14,19 @@ type Fields {
     fields: Fields!
   }
 
+  type Friend{
+    name: String,
+    email: String,
+    _id: ID
+  }
+
   type Profile {
     _id: ID
     name: String
     email: String
     password: String
+    avatar: String
+    friends: [Friend]
     data: [Data]!
   }
 
@@ -49,7 +57,9 @@ type Fields {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeProfile: Profile
+    removeCharacterData(profileId: ID!): Profile
     addCharacterData(profileId: ID!, data: DataInput!): Profile
+    getCharacterData(profileId: ID!): Profile
     updateCharacterData(profileId:ID!, data: DataInput!): Profile
   }
 `;

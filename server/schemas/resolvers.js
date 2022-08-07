@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Data } = require('../models');
+const { Profile } = require('../models');
 const { signToken } = require('../utils/auth');
 const { ObjectId } = require('mongodb');
 
@@ -66,24 +66,22 @@ const resolvers = {
         }
         )
     },
+    getCharacterData: async (parent, {profileId}, context) => {
+      const user = await Profile.findOne({ _id: profileId })
+      console.log(user)
+      return user;
+    },
     updateCharacterData: async (parent, {profileId, data, }, context) => {
       const user = await Profile.findOne({ _id: profileId })
       console.log(user)
       return user;
-
-    //   return Profile.findOneAndUpdate(
-    //  { _id: ObjectId(profileId) },
-    //  {
-    //    $push: { data }  
-    //  },
-    //  {
-    //    new: true,
-    //    runValidators: true,
-    //    unique: true
-    //  }
-    //  )
- },
-    
+    },
+    removeCharacterData: async (parent, {profileId}) => {
+      const user = await Profile.update(
+        {_id: profileId},
+        { $pull: { 'data': {} }}, {multi: true})
+      return user;
+    }
   },
 };
 

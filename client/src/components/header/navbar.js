@@ -23,7 +23,7 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/profile" end>
+                        <NavLink to="/profile">
                             {({isActive}) => isActive ? 
                             <span className="material-symbols-rounded nav-icon is-active">account_box</span> : 
                             <span className="material-symbols-rounded nav-icon">account_box</span>}

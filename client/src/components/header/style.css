@@ -11,6 +11,10 @@ body{
     height: 85vh;
 }
 
+table{
+    font-size: 0.8rem;
+}
+
 /* Nav */
 
 nav{
@@ -266,6 +270,19 @@ a:hover{
 
 /* profile */
 
+.logout-button {
+    color:#6979F8;
+    font-size: 1.3rem;
+    border: 2px solid #6979F8;
+    border-radius: 5px;
+}
+
+.logout-button:hover{
+    background-color:#6979F8;
+    color:#22282F;
+    border: 2px solid #22282F;
+}
+
 .profile-outer-container {
     height: 85vh;
     display: flex;
@@ -301,6 +318,23 @@ a:hover{
     background: url('../../assets/profileicon.jpg');
     background-size: cover;
     border-radius: 50%;
+}
+
+.profile-left {
+    justify-content: center;
+    text-align: center;
+    margin-left: 40px;
+    width: 40%;
+}
+
+.profile-right {
+    width:40%;
+}
+
+.profile-body-container {
+    display: flex;
+    justify-content:center;
+    width: 100%;
 }
 
 /* search */
@@ -351,3 +385,4 @@ a:hover{
 .form-info-container a {
     font-size: 1rem;
 }
+

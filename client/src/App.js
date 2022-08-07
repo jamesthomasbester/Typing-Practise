@@ -1,5 +1,6 @@
 import Footer from './components/footer/footer';
 import Navbar from './components/header/navbar'
+import React, {useEffect} from 'react';
 import Body from './components/main/body';
 import Login from './components/header/login';
 import Signup from './components/header/signup';
@@ -10,7 +11,7 @@ import  Profile  from './components/main/Profile';
 import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 import Search from './components/main/search';
-
+import Auth from './util/auth';
 function App() {
 
   const authLink = setContext((_, { headers }) => {
@@ -24,6 +25,10 @@ function App() {
       },
     };
   });
+
+  useEffect(() => {
+
+  }, [])
 
 
 
@@ -48,6 +53,7 @@ const link = ApolloLink.from([errorLink, httpLink]);
     cache: new InMemoryCache(),
     link
   });
+
   return (
     <ApolloProvider client={client}>
       <div className="App">
