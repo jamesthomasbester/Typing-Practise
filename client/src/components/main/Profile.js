@@ -75,6 +75,7 @@ const Profile = () => {
             await setLabels(oldState => [...oldState, item.character])
             await setLatency(oldState => [...oldState, (item.fields.latency / item.fields.count)])
         })
+        document.getElementById("profile").value = 
         setFinished(true)
     }
 
@@ -91,11 +92,12 @@ const Profile = () => {
             <div className="profile-outer-container">
                 <div className="profile-dashboard-container">
                     <div className="profile-card">
-                        <div className="profile-icon">
-                        {}
+                        <div id="profile" className="profile-icon">
                         </div>
-                        <h2>{Auth.getProfile().data.name}</h2>
-                        <p>{Auth.getProfile().data.email}</p>
+                        <div>
+                            <h2>{Auth.getProfile().data.name}</h2>
+                            <p>{Auth.getProfile().data.email}</p>
+                        </div>
                     </div>
                     <ul>
                         <li>

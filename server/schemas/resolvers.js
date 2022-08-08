@@ -51,11 +51,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addFriend: async (parent, {profileId, data}, context) => {
+    addFriend: async (parent, {profileId, FriendInput}, context) => {
       console.log(data);
       return await Profile.findByIdAndUpdate(
         { _id: ObjectId(profileId) },
-        { $addToSet: { friends: data}}
+        { $addToSet: { friends: FriendInput}}
         )
     },
     addCharacterData: async (parent, {profileId, data, }, context) => {

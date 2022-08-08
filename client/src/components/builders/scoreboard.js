@@ -34,14 +34,14 @@ const Scoreboard = ({focus, wpm, accuracy, currentPos}) => {
         <div className="scoreboard-container">
             <div className="top-score-container">
                 <div className="time-container">
-                    <h2>Current focus: {focus}</h2> 
+                    <h2 className="focus">Current focus:   {focus.toLowerCase()}</h2> 
                 </div>
                 <div className="wpm-container">
                     <Doughnut className="test" data={data} />
-                    <p>{wpm}</p>
+                    <p className="wpm">{Math.round(wpm)}</p>
                 </div>
                 <div className="score-container">
-                    <h2 class="accuracy">Accuracy: {accuracy}%</h2>
+                    <h2 className="accuracy">Accuracy: {Math.round(accuracy)}%</h2>
                 </div>
             </div>
             <div className="progress-container">

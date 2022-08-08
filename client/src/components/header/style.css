@@ -15,6 +15,14 @@ table{
     font-size: 0.8rem;
 }
 
+.accuracy{
+    font-weight: bold;
+    font-size: 2.5rem;
+    display: block;
+    line-height: 1;
+    margin: 1rem auto;
+}
+
 /* Nav */
 
 nav{
@@ -104,8 +112,8 @@ a:hover{
 }
 
 .key-container{
-    
-    margin: 5px;
+    text-align: center;
+    margin: 8px;
     width: 40px;
     height: 40px;
     justify-content: center;
@@ -199,6 +207,8 @@ a:hover{
 }
 
 #test{
+    text-align: center;
+    justify-content: center;
     display: flex;
     flex-direction: row;
 }
@@ -207,6 +217,22 @@ a:hover{
 
 .scoreboard-container {
     
+}
+
+.wpm{
+    font-weight: bold;
+    font-size: 2.5rem;
+    display: block;
+    line-height: 1;
+    margin: 1rem auto;
+}
+
+.focus{
+    font-weight: bold;
+    font-size: 2.5rem;
+    display: block;
+    line-height: 1;
+    margin: 1rem auto;
 }
 
 .top-score-container {

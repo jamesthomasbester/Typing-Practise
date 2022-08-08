@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react"
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_PROFILES} from "../../util/queries";
+import { ADD_FRIEND } from "../../util/mutation";
+import Auth from "../../util/auth";
 
 const Search = () => {
     const [search, setSearch] = useState()
     const [returnedUsers, setReturnedUsers] = useState([])
     const [finished, setFinished] = useState(false)
     const {data} = useQuery(QUERY_PROFILES)
+    const [addFriend] = useMutation(ADD_FRIEND)
 
     useEffect(() => {
         console.log(returnedUsers)
@@ -24,8 +27,15 @@ const Search = () => {
             setFinished(true)
         }
 
-    const handleFriend = () => {
-
+    const handleFriend = async (name,email) => {
+        console.log(email)
+        await addFriend({ variables: {
+            profileId: Auth.getProfile().data._id,
+            FriendInput: {
+                name: name,
+                email: email
+            }
+        }})
     }
         
 
@@ -41,7 +51,7 @@ const Search = () => {
                                 <div class="card-body">
                                     <h5 class="card-title">{item.name}</h5>
                                     <p class="card-text">{item.email}</p>
-                                    <a onclick={handleFriend}  class="btn btn-primary">Add Friend</a>
+                                    <button onClick={() => handleFriend(item.name, item.email)}  class="btn btn-primary">Add Friend</button>
                                 </div>
                             </div>
                             )}))

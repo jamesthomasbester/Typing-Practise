@@ -12,13 +12,13 @@ const Footer = () =>{
                 <div className="footer-right">
                     <ul>
                         <li>
-                            <a>github</a>
+                            <a href="https://github.com/jamesthomasbester">github</a>
                         </li>
                         <li>
-                            <a>stackoverflow</a>
+                            <a href="https://stackoverflow.com/users/10942317/james-bester">stackoverflow</a>
                         </li>
                         <li>
-                            <a>twitter</a>
+                            <a href="https://twitter.com/jamesbester1">twitter</a>
                         </li>
                     </ul>
                 </div>

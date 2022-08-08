@@ -64,4 +64,12 @@ export const REMOVE_DATA = gql`
     }
   }
   `
+  export const ADD_FRIEND = gql`
+  mutation addFriend($profileId: ID!, $FriendInput: FriendInput){
+    addFriend(profileId: $profileId, FriendInput: $FriendInput){
+      name
+      email
+    }
+  }
+  `
 

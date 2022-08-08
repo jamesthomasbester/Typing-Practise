@@ -66,7 +66,7 @@ type Fields {
     addCharacterData(profileId: ID!, data: DataInput!): Profile
     getCharacterData(profileId: ID!): Profile
     updateCharacterData(profileId:ID!, data: DataInput!): Profile
-    addFriend(profileId: ID!, data: FriendInput!): Profile
+    addFriend(profileId: ID!, FriendInput: FriendInput!): Profile
   }
 `;
 
