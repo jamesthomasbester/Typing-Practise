@@ -1,10 +1,14 @@
 /* Global */
 *{
-    color: #22282F;
+    --dark: #22282F;
+    --light: #EEEEEE;
+    --off-light: #FFFFF4;
+    --highlight: #6979F8;
+    color: var(--dark);
 }
 
 body{
-    background: #EEEEEE;
+    background: var(--light);
 }
 
 .fill{
@@ -26,7 +30,7 @@ table{
 /* Nav */
 
 nav{
-    background: #EEEEEE;
+    background: var(--light);
     display: flex;
     width: 100%;
     justify-content: center;
@@ -46,23 +50,23 @@ nav{
     width: 375px;
     height: 90px;
     
-    background: #EEEEEE;
+    background: var(--light);
     border: 1px solid #D0D5DD;
     border-radius: 0px 0px 16px 16px;
 }
 
 .nav-icon{
     font-size: 2rem;
-    color: #22282F;
+    color: var(--dark);
     padding: 15px 15px;
 }
 
 .is-active{
-    border-top: 5px solid #6979F8;
+    border-top: 5px solid var(--highlight);
 }
 
 .nav-icon :hover{
-    color: #6979F8;
+    color: var(--hightlight);
 }
 
 ul{
@@ -106,20 +110,23 @@ a:hover{
 
 .starter-button {
     margin: 20px;
-    border: 2px solid #6979F8;
+    border: 2px solid var(--highlight);
     border-radius: 10px;
-    color:#6979F8;
+    color: var(--highlight);
 }
 
 .key-container{
+    width: 50px;
+    height: 50px;
+    float: left;
+    cursor: pointer;
+    background-color: var(--off-light);
+    color: #000000;
+    line-height: 48px;
     text-align: center;
-    margin: 8px;
-    width: 40px;
-    height: 40px;
-    justify-content: center;
-    text-align: center;
-    border: 1px solid #000;
-    border-radius: 10px
+    margin-top:20px;
+    margin-left: 2px;
+    border-radius: 4px;
 }
 
 
@@ -140,12 +147,12 @@ a:hover{
 
 .start-button{
     flex-grow: 1;
+    background: var(--light);
+    color: var(--dark);
     width: 100%;
     font-size: 2rem;
     border: none;
     padding: 100px;
-    animation: breathing 3s ease-in-out infinite alternate;
-    text-shadow: 5px #000;
 }
 
 
@@ -172,12 +179,15 @@ a:hover{
 }
 
 .top-container {
-    overflow: scroll;
+    background: var(--light);
+    overflow: hidden;
     width: 100%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     height: 600px;
+    justify-content: center;
+    text-align: center;
 }
 
 .active{
