@@ -19,13 +19,7 @@ table{
     font-size: 0.8rem;
 }
 
-.accuracy{
-    font-weight: bold;
-    font-size: 2.5rem;
-    display: block;
-    line-height: 1;
-    margin: 1rem auto;
-}
+
 
 /* Nav */
 
@@ -226,45 +220,54 @@ a:hover{
 /* Scoreboard */
 
 .scoreboard-container {
-    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .wpm{
     font-weight: bold;
-    font-size: 2.5rem;
+    
     display: block;
     line-height: 1;
     margin: 1rem auto;
 }
 
+.accuracy{
+    font-weight: bold;
+    margin-top: 25px;
+}
+
 .focus{
     font-weight: bold;
-    font-size: 2.5rem;
     display: block;
     line-height: 1;
     margin: 1rem auto;
 }
 
 .top-score-container {
-    margin: 50px;
+    margin: 10px;
+    height: 100px;
     justify-content: space-evenly;
     display: flex;
 }
 
 .time-container {
-    margin-top:12px;
-    font-size: 2rem;
+    margin-top: 25px;
 }
 
 .wpm-container {
     position: relative;
-    width: 200px;
+    width: 110px;
 
 }
 
 .wpm-container p{
-    margin-top: 12px;
-    font-size: 2rem;
+    margin-top: 20px;
     font-weight: 700;
     z-index: 1;
     position: absolute;
@@ -279,11 +282,10 @@ a:hover{
 
 .score-container {
     margin-top: 12px;
-    font-size: 2rem;
 }
 
 .progress-container {
-    margin: 50px;
+    margin: 5px;
 }
 
 
@@ -291,7 +293,8 @@ a:hover{
     display: flex;
     overflow: hidden;
     background: #bbbbbb;
-    border-radius: 50px;
+    width: calc(100vw - 120px);
+    border-radius: 25px;
 }
 
 .bar-current {
