@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://jamesbester:Carlton1@cluster0.jpy13lp.mongodb.net/?retryWrites=true&w=majority", 
-() => console.log("connected to db"),
-e => console.error(e)
+mongoose.connect("mongodb+srv://jamesbester:Password1@cluster0.jpy13lp.mongodb.net/?retryWrites=true&w=majority").catch(
+    err => console.log(err)
 )
 
 // const user = new User({username: 'james', password: 'test', email:'test@test.com', github: 'james'})

@@ -93,6 +93,8 @@ a:hover{
 /* Body */ 
 
 .body-container {
+    display: flex;
+    flex-direction: column;
     height: 81vh;
 }
 
@@ -110,13 +112,13 @@ a:hover{
 }
 
 .key-container{
-    width: 50px;
-    height: 50px;
+    width: 15%;
+    height: 15%;
     float: left;
     cursor: pointer;
     background-color: var(--off-light);
     color: #000000;
-    line-height: 48px;
+    justify-content: center;
     text-align: center;
     margin-top:20px;
     margin-left: 2px;
@@ -136,7 +138,8 @@ a:hover{
     margin: 50px;
     border: 1px solid #000;
     border-radius: 30px;
-    overflow: hidden;
+    overflow: scroll;
+    overflow-anchor: 1;
 }
 
 .start-button{
@@ -425,3 +428,15 @@ a:hover{
     font-size: 1rem;
 }
 
+/* Footer */
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container a {
+    color: #6979F8;
+    text-decoration: none;
+    font-size: 1rem;
+}
